@@ -1,0 +1,31 @@
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+class="mat-elevation-z8">
+
+<!-- name Column -->
+<ng-container matColumnDef="name">
+<th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+  Name.
+</th>
+<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+</ng-container>
+
+<!-- usernames Column -->
+<ng-container matColumnDef="usernames">
+<th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by usernames (no se q hara esto)">
+  Usernames
+</th>
+<td mat-cell *matCellDef="let element"> {{element.usernames.join(', ')}} </td>
+</ng-container>
+
+<!-- status Column -->
+<ng-container matColumnDef="status">
+<th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status">
+  Status
+</th>
+<td mat-cell *matCellDef="let element"> {{element.gameStatus}} </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

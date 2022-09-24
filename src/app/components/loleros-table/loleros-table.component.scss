@@ -1,7 +1,26 @@
 table {
   width: 100%;
+  background:#ccc;
 }
 
 th.mat-sort-header-sorted {
+  color: blue;
+}
+
+tr {
+  border: 1px solid gray;
+}
+
+th {
   color: black;
 }
+
+td {
+  background: #ccc;
+  color: black;
+}
+
+.isLoleando {
+  background: lightcoral;
+}
+

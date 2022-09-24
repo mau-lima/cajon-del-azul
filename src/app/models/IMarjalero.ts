@@ -1,5 +1,6 @@
 export interface IMarjalero {
   name: string;
-  usernames: string[];
+  username: string;
   gameStatus: string;
+  riotId?: string;
 }

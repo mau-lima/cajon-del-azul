@@ -64,7 +64,7 @@ export class LolerosTableComponent implements AfterViewInit {
               const now = new Date().getTime();
               const timeElapsed =
                 (now - (userStatus.gameStartTime || now)) / (1000 * 60);
-              marjalero.gameStatus = `💀 Jugando al Lol hace ${timeElapsed} minutos`;
+              marjalero.gameStatus = `💀 Jugando al Lol hace ${Math.round(timeElapsed)} minutos`;
             }
           },
           error: (error) => {

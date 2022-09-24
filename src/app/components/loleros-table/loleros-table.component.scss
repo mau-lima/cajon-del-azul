@@ -1,6 +1,7 @@
 table {
   width: 100%;
   background:#ccc;
+  table-layout:fixed;
 }
 
 th.mat-sort-header-sorted {
@@ -30,3 +31,6 @@ td {
   background: lightcoral;
 }
 
+.table-container {
+  width: 100%;
+}

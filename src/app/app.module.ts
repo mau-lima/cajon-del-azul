@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
     HttpClientModule,
   ],
   providers: [],

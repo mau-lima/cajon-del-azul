@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { concatMap } from 'rxjs';
@@ -36,7 +36,7 @@ const marjalerosList: IMarjalero[] = [
 export class LolerosTableComponent implements AfterViewInit {
   public displayedColumns: string[] = ['name', 'username', 'status'];
   public dataSource = new MatTableDataSource(marjalerosList);
-  public whatever = {};
+  @Input() apiKey = '';
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -46,23 +46,20 @@ export class LolerosTableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
+    this._riotApi.setApiKey(this.apiKey);
     this.dataSource.sort = this.sort;
-    this._riotApi.getTest().subscribe((result) => (this.whatever = result));
 
     for (const marjalero of marjalerosList) {
       this._riotApi
         .getIdByUsername(marjalero.username)
         .pipe(
           concatMap((usernameResult: any) => {
-            console.log('llego el usernamresult');
-            console.log(usernameResult);
             marjalero.riotId = usernameResult.id;
             return this._riotApi.getGameStatus(usernameResult.id);
           })
         )
         .subscribe({
           next: (userStatus: any) => {
-            console.log(userStatus);
             if (userStatus && userStatus.gameId) {
               const now = new Date().getTime();
               const timeElapsed =
@@ -71,8 +68,7 @@ export class LolerosTableComponent implements AfterViewInit {
             }
           },
           error: (error) => {
-            console.log(error);
-            marjalero.gameStatus = 'No parece estar jugando al Lol =)';
+            marjalero.gameStatus = '🟢 No parece estar jugando al Lol =)';
           },
           complete: () => console.info('complete'),
         });

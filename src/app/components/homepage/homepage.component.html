@@ -6,6 +6,12 @@
       un futuro para ver cuál de todos le está metiendo más. Hecho por la
       persona más antilol del planeta tierra (yo, Mauricio Lima)
     </p>
+
+    <h2>INSERTE CONTRASEÑA PARA CONTINUAR</h2>
+    <input type="text" name="aaa" id="bbb" (keyup)="handleApiKeyUpdate($event)"/>
+    <h3 *ngIf="this.apiKey && !this.apiKey.includes('RGAPI')">La contraseña no es válida</h3>
+
+
   </div>
-  <app-loleros-table></app-loleros-table>
+  <app-loleros-table [apiKey]="this.apiKey" *ngIf="this.apiKey && this.apiKey.includes('RGAPI-')"></app-loleros-table>
 </div>

@@ -12,6 +12,10 @@ export class RiotApiService {
 
   constructor(private http: HttpClient) {}
 
+  setApiKey(apiKey: string) {
+    this.riotApiKey = apiKey;
+  }
+
   getGameStatus(riotId: string) {
     return this.http.get(this.riotUrl + 'spectator/v4/active-games/by-summoner/'+ encodeURI(riotId), {
       params: {
